@@ -1,0 +1,98 @@
+<meta charset="utf-8"><title>부하테스트 결과 리포트 (샘플)</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2530;--muted:#5b6675;--line:#e5e9ef;--accent:#2f6df6;--good:#1a9d6e;--warn:#e5893b;--bad:#e0484d;--tps:#7b3ff2;--rt:#12a3a3;--tx:#2f6df6;--grid:#eef1f5;--chipbg:#eef2fb;}
+@media(prefers-color-scheme:dark){:root{--bg:#0f141a;--card:#161d26;--ink:#e7edf5;--muted:#9aa7b6;--line:#243040;--grid:#1e2733;--chipbg:#1a2436;}}
+:root[data-theme="dark"]{--bg:#0f141a;--card:#161d26;--ink:#e7edf5;--muted:#9aa7b6;--line:#243040;--grid:#1e2733;--chipbg:#1a2436;}
+:root[data-theme="light"]{--bg:#f6f7f9;--card:#fff;--ink:#1c2530;--muted:#5b6675;--line:#e5e9ef;--grid:#eef1f5;--chipbg:#eef2fb;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:32px 20px 80px}
+header.rep{border-radius:16px;padding:28px;color:#fff;background:linear-gradient(120deg,#2f6df6,#7b3ff2);box-shadow:0 10px 30px rgba(47,109,246,.25)}
+header.rep .kicker{font-size:13px;opacity:.9;margin:0 0 8px}
+header.rep h1{margin:0;font-size:25px;font-weight:800}
+header.rep .sub{margin:10px 0 0;font-size:14px;opacity:.92}
+.metarow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.metarow span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:5px 11px;border-radius:999px;font-size:12.5px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:18px}
+h2{font-size:18px;margin:0 0 14px;display:flex;align-items:center;gap:9px}
+h2 .n{display:inline-flex;width:26px;height:26px;border-radius:8px;background:var(--chipbg);color:var(--accent);font-size:13px;font-weight:800;align-items:center;justify-content:center}
+h3{font-size:15px;margin:20px 0 8px}
+p{margin:8px 0}.muted{color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:720px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+.kpi .v{font-size:21px;font-weight:800}.kpi .l{font-size:12.5px;color:var(--muted);margin-top:3px}.kpi .s{font-size:11.5px;color:var(--muted);margin-top:6px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12.5px;background:var(--grid)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.peak td{background:rgba(224,72,77,.08)}
+.tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:6px;font-weight:600}
+.tag.p{background:rgba(224,72,77,.14);color:var(--bad)}.tag.g{background:rgba(26,157,110,.14);color:var(--good)}.tag.w{background:rgba(229,137,59,.16);color:var(--warn)}
+.callout{border-left:4px solid var(--warn);background:rgba(229,137,59,.08);border-radius:0 10px 10px 0;padding:14px 16px;margin:12px 0}
+pre{background:var(--grid);border:1px solid var(--line);border-radius:9px;padding:12px 14px;overflow-x:auto;font-family:ui-monospace,Consolas,monospace;font-size:12px;line-height:1.5;margin:8px 0}
+code{background:var(--grid);padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+ul.clean{margin:8px 0;padding-left:20px}ul.clean li{margin:6px 0}
+.chart{width:100%;height:230px;display:block}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:2px 0 4px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.foot{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
+.scroll{overflow-x:auto}
+</style>
+<div class="wrap">
+<header class="rep">
+  <p class="kicker">부하테스트 결과 리뷰 · WhaTap 성능추이 기반 · 자동 생성</p>
+  <h1>부하테스트 결과 리포트 (샘플)</h1>
+  <p class="sub">측정일 <b>2025-01-01</b> · 분석 구간 2025-01-01 09:40 ~ 15:30</p>
+  <div class="metarow"><span>데이터 출처: WhaTap 성능 추이 (5분 단위)</span><span>지표: TPS · 응답시간 · 동시 Active Tx</span></div>
+</header>
+
+<section>
+  <h2><span class="n">1</span>핵심 요약</h2>
+  <div class="kpis"><div class="kpi"><div class="v" style="color:var(--tps)">2,600</div><div class="l">최대 TPS</div><div class="s">@15:00</div></div><div class="kpi"><div class="v" style="color:var(--tx)">3,800</div><div class="l">최대 동시 Active Tx</div><div class="s">@15:00</div></div><div class="kpi"><div class="v" style="color:var(--rt)">620 ms</div><div class="l">최대 평균 응답시간</div><div class="s">부하 피크 시</div></div><div class="kpi"><div class="v" style="color:inherit">3회</div><div class="l">부하 세션(회차)</div><div class="s">총 처리요청 ≈ 3,408,840</div></div></div>
+  <p style="margin-top:16px">분석 구간에서 총 <b>3회</b>의 부하 세션이 탐지됐습니다.
+  피크는 <b>15:00</b>경으로 최대 <b>2,600 TPS</b>, 동시 처리 <b>3,800</b>건, 평균 응답 <b>620 ms</b>에 도달했습니다.
+  동시 Active Tx가 동시접속 사용자 수보다 크게 높으면 요청 적체(큐잉)를 뜻합니다.</p>
+</section>
+
+<section>
+  <h2><span class="n">2</span>회차별 부하 분석</h2>
+  <div class="scroll"><table>
+    <tr><th>세션</th><th>시간대</th><th class="num">최대 TPS</th><th class="num">최대 평균응답(ms)</th><th class="num">최대 동시 Active Tx</th><th class="num">피크 동시접속</th><th>부하</th></tr>
+    <tr><td>1차</td><td>10:00–10:05</td><td class='num'>950</td><td class='num'>140</td><td class='num'>1,100</td><td class='num'>12</td><td><span class="tag g">-</span></td></tr><tr><td>2차</td><td>13:00–13:05</td><td class='num'>1,600</td><td class='num'>260</td><td class='num'>2,200</td><td class='num'>14</td><td><span class="tag g">-</span></td></tr><tr class="peak"><td>3차</td><td>15:00–15:10</td><td class='num'>2,600</td><td class='num'>620</td><td class='num'>3,800</td><td class='num'>16</td><td><span class="tag p">최대</span></td></tr>
+  </table></div>
+  <p class="muted" style="font-size:12.5px">※ 값은 5분 버킷 내 최댓값. 세션 = TPS 임계 이상 버킷을 시간 간격으로 묶어 자동 탐지.</p>
+
+  <h3>시간대별 추이</h3>
+  <div class="legend"><span><i style="background:var(--tps)"></i>TPS</span><span><i style="background:var(--rt)"></i>평균 응답시간 (ms)</span><span><i style="background:var(--tx)"></i>동시 Active Tx</span></div>
+  <svg class="chart" id="chart" viewBox="0 0 960 240" preserveAspectRatio="none"></svg>
+  <div id="axis" class="muted" style="font-size:11.5px;display:flex;justify-content:space-between"></div>
+</section>
+
+
+
+<p class="foot">WhaTap 성능 추이 데이터 기반 · generate_report.py 자동 생성</p>
+</div>
+<script>
+(function(){
+ var DATA=[["09:40", 0.2, 0.3, 0.0], ["09:45", 0.2, 0.3, 0.0], ["09:50", 0.2, 0.3, 0.0], ["09:55", 0.2, 0.3, 0.0], ["10:00", 800.0, 120.0, 900.0], ["10:05", 950.0, 140.0, 1100.0], ["10:10", 0.2, 0.3, 0.0], ["10:15", 0.2, 0.3, 0.0], ["10:20", 0.2, 0.3, 0.0], ["10:25", 0.2, 0.3, 0.0], ["10:30", 0.2, 0.3, 0.0], ["10:35", 0.2, 0.3, 0.0], ["10:40", 0.2, 0.3, 0.0], ["10:45", 0.2, 0.3, 0.0], ["10:50", 0.2, 0.3, 0.0], ["10:55", 0.2, 0.3, 0.0], ["11:00", 0.2, 0.3, 0.0], ["11:05", 0.2, 0.3, 0.0], ["11:10", 0.2, 0.3, 0.0], ["11:15", 0.2, 0.3, 0.0], ["11:20", 0.2, 0.3, 0.0], ["11:25", 0.2, 0.3, 0.0], ["11:30", 0.2, 0.3, 0.0], ["11:35", 0.2, 0.3, 0.0], ["11:40", 0.2, 0.3, 0.0], ["11:45", 0.2, 0.3, 0.0], ["11:50", 0.2, 0.3, 0.0], ["11:55", 0.2, 0.3, 0.0], ["12:00", 0.2, 0.3, 0.0], ["12:05", 0.2, 0.3, 0.0], ["12:10", 0.2, 0.3, 0.0], ["12:15", 0.2, 0.3, 0.0], ["12:20", 0.2, 0.3, 0.0], ["12:25", 0.2, 0.3, 0.0], ["12:30", 0.2, 0.3, 0.0], ["12:35", 0.2, 0.3, 0.0], ["12:40", 0.2, 0.3, 0.0], ["12:45", 0.2, 0.3, 0.0], ["12:50", 0.2, 0.3, 0.0], ["12:55", 0.2, 0.3, 0.0], ["13:00", 1600.0, 260.0, 2200.0], ["13:05", 1400.0, 240.0, 1800.0], ["13:10", 0.2, 0.3, 0.0], ["13:15", 0.2, 0.3, 0.0], ["13:20", 0.2, 0.3, 0.0], ["13:25", 0.2, 0.3, 0.0], ["13:30", 0.2, 0.3, 0.0], ["13:35", 0.2, 0.3, 0.0], ["13:40", 0.2, 0.3, 0.0], ["13:45", 0.2, 0.3, 0.0], ["13:50", 0.2, 0.3, 0.0], ["13:55", 0.2, 0.3, 0.0], ["14:00", 0.2, 0.3, 0.0], ["14:05", 0.2, 0.3, 0.0], ["14:10", 0.2, 0.3, 0.0], ["14:15", 0.2, 0.3, 0.0], ["14:20", 0.2, 0.3, 0.0], ["14:25", 0.2, 0.3, 0.0], ["14:30", 0.2, 0.3, 0.0], ["14:35", 0.2, 0.3, 0.0], ["14:40", 0.2, 0.3, 0.0], ["14:45", 0.2, 0.3, 0.0], ["14:50", 0.2, 0.3, 0.0], ["14:55", 0.2, 0.3, 0.0], ["15:00", 2600.0, 620.0, 3800.0], ["15:05", 2200.0, 540.0, 3200.0], ["15:10", 1800.0, 300.0, 2400.0], ["15:15", 0.2, 0.3, 0.0], ["15:20", 0.2, 0.3, 0.0], ["15:25", 0.2, 0.3, 0.0], ["15:30", 0.2, 0.3, 0.0]], LAB=["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"];
+ var svg=document.getElementById("chart");if(!svg||!DATA.length)return;
+ var W=960,H=240,pl=6,pr=6,pt=14,pb=8,n=DATA.length;
+ var mT=Math.max.apply(0,DATA.map(function(d){return d[1]}))||1;
+ var mR=Math.max.apply(0,DATA.map(function(d){return d[2]}))||1;
+ var mX=Math.max.apply(0,DATA.map(function(d){return d[3]}))||1;
+ var x=function(i){return pl+i*(W-pl-pr)/(n-1)};
+ var yb=function(v,mx){return (H-pb)-v/mx*(H-pt-pb)};
+ var NS="http://www.w3.org/2000/svg";
+ function line(k,color,mx,w){var d="";DATA.forEach(function(r,i){d+=(i?"L":"M")+x(i).toFixed(1)+","+yb(r[k],mx).toFixed(1)+" "});
+  var p=document.createElementNS(NS,"path");p.setAttribute("d",d);p.setAttribute("fill","none");
+  p.setAttribute("stroke",color);p.setAttribute("stroke-width",w);p.setAttribute("stroke-linejoin","round");svg.appendChild(p)}
+ for(var g=1;g<4;g++){var yy=pt+g*(H-pt-pb)/4;var ln=document.createElementNS(NS,"line");
+  ln.setAttribute("x1",pl);ln.setAttribute("x2",W-pr);ln.setAttribute("y1",yy);ln.setAttribute("y2",yy);
+  ln.setAttribute("stroke","currentColor");ln.setAttribute("opacity",".08");svg.appendChild(ln)}
+ var c=getComputedStyle(document.documentElement);
+ line(3,c.getPropertyValue("--tx").trim()||"#2f6df6",mX,1.6);
+ line(1,c.getPropertyValue("--tps").trim()||"#7b3ff2",mT,1.8);
+ line(2,c.getPropertyValue("--rt").trim()||"#12a3a3",mR,1.8);
+ var ax=document.getElementById("axis");if(ax){LAB.forEach(function(t){var s=document.createElement("span");s.textContent=t;ax.appendChild(s)})}
+})();
+</script>

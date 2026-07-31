@@ -1,0 +1,18 @@
+# === 실제/민감 데이터 제외 (합성 샘플만 커밋) ===
+# WhaTap 실제 성능추이 CSV
+perf-trending_*.csv
+# 내부 데이터가 포함된 리포트
+부하테스트_리포트_*.html
+test_report*.html
+# 작업 인계/기록 (내부 IP·자격증명 포함 가능)
+*인계*.md
+*_notes.md
+
+# 파이썬
+__pycache__/
+*.pyc
+*.pyo
+
+# 샘플은 예외적으로 포함
+!sample_perf.csv
+!sample_report.html
